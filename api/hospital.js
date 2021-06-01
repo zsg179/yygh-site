@@ -18,5 +18,20 @@ export default {
             url: `${api_name}/findByHosName/${hosname}`,
             method: 'get'
         })
+    },
+    //根据医院编号获取医院预约挂号详情
+    show(hoscode) {
+        return request({
+            url: `${api_name}/findHospDetail/${hoscode}`,
+            method: 'get'
+        })
+    },
+    //根据医院编号获取科室
+    findDepartment(hoscode) {
+        return request({
+            url: `${api_name}/department/${hoscode}`,
+            method: 'get'
+        })
     }
+
 }
