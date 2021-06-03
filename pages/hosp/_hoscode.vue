@@ -168,7 +168,6 @@ import "~/assets/css/hospital.css";
 
 import hospitalApi from "@/api/hospital";
 import cookie from "js-cookie";
-
 export default {
   data() {
     return {
@@ -200,7 +199,7 @@ export default {
         this.hospital.hoscode +
         "&depcode=" +
         depcode;
-    },
+    },   
     init() {
       hospitalApi.show(this.hoscode).then((response) => {
         this.hospital = response.data.hospital;
