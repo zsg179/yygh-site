@@ -218,7 +218,7 @@ import Vue from "vue";
 import userInfoApi from "@/api/userInfo";
 import smsApi from "@/api/msm";
 import hospitalApi from "@/api/hospital";
-import weixinApi from '@/api/weixin'
+import weixinApi from "@/api/weixin";
 
 const defaultDialogAtrr = {
   showLoginType: "phone", // 控制手机登录与微信登录切换
@@ -253,18 +253,20 @@ export default {
   mounted() {
     // 注册全局登录事件对象
     window.loginEvent = new Vue();
+    
     // 监听登录事件
     loginEvent.$on("loginDialogEvent", function () {
       document.getElementById("loginDialog").click();
     });
+
     // 触发事件，显示登录层：loginEvent.$emit('loginDialogEvent') //初始化微信js
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.src =
       "https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js";
     document.body.appendChild(script);
-    // 微信登录回调处理
 
+    // 微信登录回调处理
     let self = this;
     window["loginCallback"] = (name, token, openid) => {
       self.loginCallback(name, token, openid);
