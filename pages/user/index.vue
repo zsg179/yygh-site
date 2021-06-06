@@ -1,60 +1,52 @@
 <template>
-    <!-- header -->
-
+  <!-- header -->
   <div class="nav-container page-component">
-        <!--左侧导航 #start -->
-
+    <!--左侧导航 #start -->
     <div class="nav left-nav">
       <div class="nav-item selected">
         <span
           class="v-link selected dark"
           onclick="javascript:window.location='/user'"
-          >实名认证 </span
-        >
+          >实名认证
+        </span>
       </div>
-
       <div class="nav-item">
         <span
           class="v-link selected dark"
           onclick="javascript:window.location='/order'"
-          > 挂号订单 </span
         >
+          挂号订单
+        </span>
       </div>
-
       <div class="nav-item">
         <span
           class="v-link clickable dark"
           onclick="javascript:window.location='/patient'"
-          > 就诊人管理 </span
         >
+          就诊人管理
+        </span>
       </div>
-
       <div class="nav-item">
-        <span class="v-link clickable dark"> 修改账号信息 </span>
+        <span class="v-link clickable dark"> 修改账号信息 </span>
       </div>
-
       <div class="nav-item">
-        <span class="v-link clickable dark"> 意见反馈 </span>
+        <span class="v-link clickable dark"> 意见反馈 </span>
       </div>
     </div>
-        <!-- 左侧导航 #end -->
-        <!-- 右侧内容 #start -->
-
+    <!-- 左侧导航 #end -->
+    <!-- 右侧内容 #start -->
     <div class="page-container">
       <div>
-        <div class="title"> 实名认证</div>
-
+        <div class="title">实名认证</div>
         <div class="status-bar">
           <div class="status-wrapper">
             <span class="iconfont"></span>{{ userInfo.param.authStatusString }}
           </div>
         </div>
-
         <div class="tips">
           <span class="iconfont"></span>
           完成实名认证后才能添加就诊人，正常进行挂号，为了不影响后续步骤，建议提前实名认证。
         </div>
-
         <div class="form-wrapper" v-if="userInfo.authStatus == 0">
           <div>
             <el-form
@@ -109,9 +101,8 @@
                           class="avatar"
                         />
                         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-
                         <div v-if="!userAuah.certificatesUrl" class="text">
-                           上传证件合照
+                          上传证件合照
                         </div>
                       </div>
                     </el-upload>
@@ -123,7 +114,6 @@
                 </div>
               </el-form-item>
             </el-form>
-
             <div class="bottom-wrapper">
               <div class="button-wrapper">
                 <div class="v-button" @click="saveUserAuah()">
@@ -133,7 +123,6 @@
             </div>
           </div>
         </div>
-
         <div class="context-container" v-if="userInfo.authStatus != 0">
           <div>
             <el-form
@@ -154,17 +143,13 @@
               </el-form-item>
             </el-form>
           </div>
-                  
         </div>
-              
       </div>
-          
     </div>
-    <!-- 右侧内容 #end -->
-        <!-- 登录弹出框 -->
-      
+    <!-- 右侧内容 #end -->
+    <!-- 登录弹出框 -->
   </div>
-    <!-- footer -->
+  <!-- footer -->
 </template>
 
 <script>
@@ -184,7 +169,7 @@ export default {
     return {
       userAuah: defaultForm,
       certificatesTypeList: [],
-      fileUrl: "http://localhost/api/oss/file/fileUpload",
+      fileUrl: "http://localhost:8001/api/oss/file/fileUpload",
       userInfo: {
         param: {},
       },
@@ -229,24 +214,25 @@ export default {
       if (response.code !== 200) {
         this.$message.error("上传失败");
         return;
-      } // 填充上传文件列表
+      }
+      // 填充上传文件列表
       this.userAuah.certificatesUrl = file.response.data;
     },
   },
 };
 </script>
 <style>
-  .header-wrapper .title  {
+.header-wrapper .title {
   font-size: 16px;
   margin-top: 0;
 }
-.content-wrapper  {
+.content-wrapper {
   margin-left: 0;
 }
-.patient-card .el-card__header .detail  {
+.patient-card .el-card__header .detail {
   font-size: 14px;
 }
-.page-container .title  {
+.page-container .title {
   letter-spacing: 1px;
   font-weight: 700;
   color: #333;
@@ -254,15 +240,15 @@ export default {
   margin-top: 0;
   margin-bottom: 20px;
 }
-.page-container .tips  {
+.page-container .tips {
   width: 100%;
   padding-left: 0;
 }
-.page-container .form-wrapper  {
+.page-container .form-wrapper {
   padding-left: 92px;
   width: 580px;
 }
-.form-normal  {
+.form-normal {
   height: 40px;
 }
 .bottom-wrapper {
